@@ -1,0 +1,16 @@
+<div class="bottom-space-1 top-space-1">
+  <%= link_to 'Write new book', new_book_path, class: 'material-button background-blue' %>
+</div>
+
+<h1 class="l4-header bottom-space-1">All books</h1>
+
+<% @books.each do |book| %>
+
+  <div class="bottom-space-1 border-top-light">
+
+    <%= link_to book do %>
+      <h2 class="list-item-heading"><%= book.title %></h2>
+    <% end %>
+  </div>
+<% end %>
+

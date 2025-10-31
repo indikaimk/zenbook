@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Zenbook</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    "zenbook/application", media: "all" %>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  </head>
+  <body>
+    <div class="reading-container">
+      <div class="reading-header">
+        <%= link_to zenbook.root_path, class: "close-button" do %><i class="material-icons">close</i><% end %>
+        <a href="#" class="toc-button"><i class="material-icons">menu</i></a>
+      </div>
+      <div class="toc-dropdown">
+        <ul>
+          <% @page.book.pages.each do |page| %>
+            <li><%= link_to page.title, [page.book, page] %></li>
+          <% end %>
+        </ul>
+      </div>
+      <div class="reading-content">
+        <%= yield %>
+      </div>
+      <div class="reading-footer">
+        Page <%= @page.book.pages.find_index(@page) + 1 %> of <%= @page.book.pages.count %>
+      </div>
+    </div>
+    <%= javascript_include_tag "zenbook/application" %>
+  </body>
+</html>

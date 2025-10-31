@@ -1,0 +1,39 @@
+<div class="bottom-space-1 top-space-1 flex-left flex-align-center">
+  <div>
+    <%= link_to books_path, class: 'grey-button' do %>
+      &larr; Back
+    <% end %>
+  </div>
+  <div>
+    <%= link_to 'Edit', edit_book_path(@book), class: 'grey-button' %>
+  </div>
+  <div>
+    <%= button_to "Add page", book_pages_path(@book), method: :post, class: 'material-button background-blue' %>
+  </div>
+</div>
+
+<div class="bottom-space-1">
+  <h1 class="l4-header"><%= @book.title %></h1>
+</div>
+
+<div class="bottom-space-2">
+  <%= @book.description %>
+</div>
+
+
+
+<% unless @book.pages.empty? %>
+  <h2 class="list-item-heading bottom-space-1">Pages</h2>
+
+  <% @book.pages.each do |page| %>
+    <div>
+      <%= link_to page_path(page) do %>
+        <p class="list-item-heading-small"><%= page.title %></p>
+      <% end %>
+    </div>
+
+  <% end %>
+<% else %>
+  <p>No pages added yet.</p> 
+<% end %>
+
