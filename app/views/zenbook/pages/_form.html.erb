@@ -1,34 +1,48 @@
-<%= form_with model: page do |form| %>
-  <div class="top-space-1 flex-left flex-align-center">
-    <div>
-      <%= link_to book_path(local_assigns[:book] || page.book), class: 'material-back-button' do %>
-          <span class="back-icon"></span>
-          <span class="back-text">Back</span>
-      <% end %>      
-    </div>
-    <div>
-      <h1 class="l4-header"><%= local_assigns[:book].title %></h1>
-    </div>
-  </div>
-  <div class="flex-left top-space-1">
-    <div>
-      <%= form.submit "Save page", class: 'material-button background-blue' %>    
-    </div>
-    <div>
-      <%= form.submit "Save and close", class: 'material-button background-blue' %>    
-    </div>
-  </div>
-  <% if page.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(page.errors.count, "error") %> prohibited this page from being saved:</h2>
+<% if page.errors.any? %>
+  <div id="error_explanation">
+    <h2><%= pluralize(page.errors.count, "error") %> prohibited this page from being saved:</h2>
 
-      <ul>
-        <% page.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+    <ul>
+      <% page.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<div class="top-space-1 flex-left flex-align-center">
+  <div>
+    <%= link_to book_path(page.book), class: 'material-back-button' do %>
+      <span class="back-icon"></span>
+      <span class="back-text">Back</span>
+    <% end %>     
+  </div>
+  <div>
+    <h1 class="l4-header"><%= page.book.title %></h1>
+  </div>
+</div>
+
+<%= form_with(model: page) do |form| %>
+  <div class="flex-space-between flex-align-center">
+    <div class="flex-left top-space-1">
+      <div>
+        <%= form.submit "Save page", class: 'material-button background-blue' %>    
+      </div>
+      <div>
+        <%= form.submit "Save and close", class: 'material-button background-blue' %>    
+      </div>
+      <div>
+        <% if page.draft? %>
+          <%= form.submit "Publish", class: 'material-button background-teal' %>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
+      </div>
+    </div> 
+    <div>
+      <% if page.updated_at %>
+        <p class="meta-text">Last saved at <%= page.updated_at.strftime("%b %d, %Y %I:%M %p") %></p>
+      <% end %>
+    </div>   
+  </div>
 
   <div class="material-textbox">
     <%= form.text_field :title, placeholder: " " %>
@@ -38,6 +52,5 @@
   <div>
     <%= form.rich_text_area :content %>
   </div>
-
 
 <% end %>

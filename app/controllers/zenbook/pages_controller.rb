@@ -3,6 +3,8 @@ module Zenbook
     layout 'creator'
     before_action :set_book, only: [:create]
     before_action :set_page, only: [:show, :edit, :update, :publish]
+    around_action :switch_time_zone, only: %i[update publish edit]
+
     # layout 'zenbook/reading_layout', except: [:new, :create]
 
     def show
@@ -23,7 +25,19 @@ module Zenbook
     end
 
     def update 
-      
+      @page.update(page_params)
+      if @page.save
+        if params[:commit] == "Save and close"
+          redirect_to @page.book
+        elsif params[:commit] == "Save page"
+          redirect_to edit_page_path(@page)
+        elsif params[:commit] == "Publish"
+          @page.published!
+          redirect_to read_page_path(@page)  
+        end
+      else
+
+      end
     end
 
     def publish

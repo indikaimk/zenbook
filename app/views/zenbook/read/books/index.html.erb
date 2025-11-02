@@ -1,0 +1,11 @@
+<h1 class="l3-header">Books for you</h1>
+<section class="bottom-space-1">
+  <% @books.each do |book| %>
+    <div class="card bottom-space-1">
+      <div class="card-content">
+        <h3 class="l4-header"><%= link_to book.title, zenbook.read_book_path(book) %></h3>
+        <p><%= truncate(book.description, length: 150) %></p>
+      </div>
+    </div>
+  <% end %>
+</section>

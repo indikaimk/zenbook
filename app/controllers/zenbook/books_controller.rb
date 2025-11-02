@@ -1,5 +1,6 @@
 module Zenbook
   class BooksController < ::ApplicationController
+    before_action :set_book, only: [:show, :edit, :update]
     layout 'creator'
 
     def index
@@ -7,7 +8,9 @@ module Zenbook
     end
 
     def show
-      @book = Book.find(params[:id])
+    end
+
+    def edit
     end
 
     def new
@@ -23,10 +26,22 @@ module Zenbook
       end
     end
 
+    def update
+      if @book.update(book_params)
+        redirect_to @book
+      else
+        render :edit
+      end
+    end
+
     private
 
     def book_params
-      params.require(:book).permit(:title)
+      params.require(:book).permit(:title, :description, :state)
+    end
+
+    def set_book 
+      @book = Book.find(params[:id])      
     end
   end
 end

@@ -5,6 +5,11 @@ Zenbook::Engine.routes.draw do
         patch :publish
       end
     end
-    resources :book_subscriptions, only: [:create]
+    resources :book_subscriptions, only: [:create, :update, :destroy]
+  end
+
+  namespace :read do
+    resources :books, only: [:index, :show]
+    resources :pages, only: [:show]
   end
 end

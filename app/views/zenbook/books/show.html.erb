@@ -27,9 +27,26 @@
 
   <% @book.pages.each do |page| %>
     <div>
-      <%= link_to page_path(page) do %>
-        <p class="list-item-heading-small"><%= page.title %></p>
-      <% end %>
+      <div class="border-top-light top-space-point-5 bottom-space-point-5">
+        <div class="flex-left">
+          <div>
+            <% if page.draft? %>
+              <h3 class="l5-header"><%= link_to page.title, edit_page_path(page) %></h3>
+            <% else %>
+              <h3 class="list-item-heading"><%= link_to page.title, read_page_path(page) %></h3>
+            <% end %> 
+          </div>
+        </div>
+        <div>
+          <div>
+            <% if page.draft? %>
+              <p class="meta-text">Last edited on <%= page.updated_at.strftime("%b %d, %Y") %></p>
+            <% else %>
+              <p class="meta-text">Published on <%= page.updated_at.strftime("%b %d, %Y") %></p>
+            <% end %>
+          </div>
+        </div>       
+      </div>
     </div>
 
   <% end %>
