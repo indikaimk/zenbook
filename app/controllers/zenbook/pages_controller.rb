@@ -57,7 +57,7 @@ module Zenbook
     end
 
     def page_params
-      params.require(:page).permit(:title, :content)
+      params.require(:page).permit(:title, :content, :page_number)
     end
   end
 end

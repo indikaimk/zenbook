@@ -1,11 +1,23 @@
-<h1 class="l3-header">Books for you</h1>
+<h1 class="l3-header top-space-1 bottom-space-1 center-text">Read. Build your DevOps career</h1>
 <section class="bottom-space-1">
-  <% @books.each do |book| %>
-    <div class="card bottom-space-1">
-      <div class="card-content">
-        <h3 class="l4-header"><%= link_to book.title, zenbook.read_book_path(book) %></h3>
-        <p><%= truncate(book.description, length: 150) %></p>
+  <div class="card-grid">
+    <% @books.each do |book| %>
+      <div class="book-card">
+        <div>
+          <% if book.cover_image.attached? %>
+            <%= image_tag main_app.url_for(book.cover_image), class: "book-card-image" %>
+          <% end %> 
+        </div>
+        <div>
+          <%= link_to zenbook.read_page_path(book.pages.sorted.first) do %>
+            <h2 class="l5-header"><%= book.title %></h2>
+          <% end %>
+          <div class="top-space-1">
+            <%= link_to 'Read book', zenbook.read_page_path(book.pages.sorted.first), class: 'material-button background-blue' %>
+          </div>  
+        </div>
       </div>
-    </div>
-  <% end %>
+    <% end %>
+  </div>
+
 </section>

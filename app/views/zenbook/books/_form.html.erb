@@ -33,6 +33,15 @@
     <%= form.select :state, options_for_select(Zenbook::Book.states.map { |key, value| [key.humanize, key] }, form.object.state) %>
   </div>
 
+  <div class="field bottom-space-1">
+    <%= form.label :cover_image %>
+    <%= form.file_field :cover_image %>
+    <% if book.cover_image.attached? %>
+      <div class="top-space-1">
+        <%= image_tag main_app.url_for(book.cover_image.variant(resize_to_limit: [200, 300])) %>
+      </div>
+    <% end %>
+  </div>
 
   <div class="actions">
     <%= form.submit "Save", class: 'material-button background-blue' %>

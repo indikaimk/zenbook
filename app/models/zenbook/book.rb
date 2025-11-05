@@ -6,5 +6,7 @@ module Zenbook
     scope :published, -> { where.not(state: :draft) }
     scope :in_progress, -> { where(state: :in_progress) }
     scope :latest, -> { order(updated_at: :desc).limit(5) }
+
+    has_one_attached :cover_image
   end
 end

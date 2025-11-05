@@ -25,7 +25,7 @@
 <% unless @book.pages.empty? %>
   <h2 class="list-item-heading bottom-space-1">Pages</h2>
 
-  <% @book.pages.each do |page| %>
+  <% @book.pages.sorted.each do |page| %>
     <div>
       <div class="border-top-light top-space-point-5 bottom-space-point-5">
         <div class="flex-left">
@@ -33,7 +33,15 @@
             <% if page.draft? %>
               <h3 class="l5-header"><%= link_to page.title, edit_page_path(page) %></h3>
             <% else %>
-              <h3 class="list-item-heading"><%= link_to page.title, read_page_path(page) %></h3>
+              <div class="flex-left flex-align-center" >
+                <h3 class="list-item-heading"><%= link_to page.title, read_page_path(page) %></h3>
+                <%= link_to edit_page_path(page) do %>
+                  <span class="material-symbols-outlined flex-align-center">
+                    edit_square
+                  </span>
+                <% end %>                
+              </div>
+
             <% end %> 
           </div>
         </div>

@@ -36,6 +36,10 @@
           <%= form.submit "Publish", class: 'material-button background-teal' %>
         <% end %>
       </div>
+      <div class="flex-align-center">
+        <%= form.label :page_number, "Page No.", class: "meta-text " %>
+        <%= form.text_field :page_number, class: "meta-text left-space-point-5" %>
+      </div>
     </div> 
     <div>
       <% if page.updated_at %>

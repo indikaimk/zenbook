@@ -37,7 +37,7 @@ module Zenbook
     private
 
     def book_params
-      params.require(:book).permit(:title, :description, :state)
+      params.require(:book).permit(:title, :description, :state, :cover_image)
     end
 
     def set_book 
