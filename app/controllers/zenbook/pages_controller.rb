@@ -2,8 +2,8 @@ module Zenbook
   class PagesController < ::ApplicationController
     layout 'creator'
     before_action :set_book, only: [:create]
-    before_action :set_page, only: [:show, :edit, :update, :publish]
-    around_action :switch_time_zone, only: %i[update publish edit]
+    before_action :set_page, only: [:show, :edit, :update]
+    around_action :switch_time_zone, only: %i[update edit]
 
     # layout 'zenbook/reading_layout', except: [:new, :create]
 
@@ -31,6 +31,8 @@ module Zenbook
           redirect_to @page.book
         elsif params[:commit] == "Save page"
           redirect_to edit_page_path(@page)
+        elsif params[:commit] == "Read"
+          redirect_to read_page_path(@page)
         elsif params[:commit] == "Publish"
           @page.published!
           redirect_to read_page_path(@page)  
@@ -40,11 +42,11 @@ module Zenbook
       end
     end
 
-    def publish
-      @page = @book.pages.find(params[:id])
-      @page.published!
-      redirect_to [@book, @page]
-    end
+    # def publish
+    #   @page = @book.pages.find(params[:id])
+    #   @page.published!
+    #   redirect_to [@book, @page]
+    # end
 
     private
 

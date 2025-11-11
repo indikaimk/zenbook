@@ -32,8 +32,13 @@
         <%= form.submit "Save and close", class: 'material-button background-blue' %>    
       </div>
       <div>
+        <%= form.submit "Read", class: 'material-button background-blue' %>
+      </div>
+      <div>
         <% if page.draft? %>
           <%= form.submit "Publish", class: 'material-button background-teal' %>
+        <% else %>
+          <%= form.submit "Unpublish", class: 'material-button background-teal' %>
         <% end %>
       </div>
       <div class="flex-align-center">

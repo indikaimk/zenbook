@@ -4,6 +4,3 @@
   <%= @page.content %>
 </div>
 
-<% if @page.draft? %>
-  <%= button_to "Publish", publish_page_path(@page), method: :patch %>
-<% end %>

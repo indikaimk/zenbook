@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+
     <%= stylesheet_link_tag "zenbook/application", media: "all" %>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Quicksand:wght@300..700&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
@@ -15,7 +16,9 @@
       <div class="reading-header">
         <div class="reading-header-inner">
           <div class="flex-align-center">
-            <a href="#"><i class="material-icons">menu</i></a>
+            <%= link_to "#", class: "toc-button", data: { controller: "toc", action: "click->toc#toggle" } do %>
+              <i class="material-icons">menu</i>
+            <% end %>
           </div>
           <div>
             <h1 class="center-text"><%= @page.book.title %></h1>
