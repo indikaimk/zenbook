@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  // static targets = [ "questionForm" ]
+  static targets = [ "tocDropdown" ]
 
   connect() {
     console.log("TOC controller connected")
@@ -9,7 +9,8 @@ export default class extends Controller {
 
 
   toggle(event) {
-    console.log("Checkbox changed, submitting form...")
-    this.questionFormTarget.requestSubmit()
+    event.preventDefault()
+    console.log("toggle menu")
+    this.tocDropdownTarget.classList.toggle("open")
   }
 }

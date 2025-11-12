@@ -6,7 +6,12 @@ Zenbook::Engine.routes.draw do
   end
 
   namespace :read do
-    resources :books, only: [:index, :show]
+    resources :books, only: [:index, :show] do
+      member do
+        get 'show_toc'
+        get 'hide_toc'
+      end
+    end
     resources :pages, only: [:show]
   end
 end

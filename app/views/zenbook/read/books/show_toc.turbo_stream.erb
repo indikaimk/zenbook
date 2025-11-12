@@ -1,0 +1,4 @@
+<%= turbo_stream.replace "toc" do %>
+  toc
+  <%= render partial: "toc", locals: { book: @book } %>
+<% end %>

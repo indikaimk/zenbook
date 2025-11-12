@@ -5,6 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <%= javascript_importmap_tags %>
 
     <%= stylesheet_link_tag "zenbook/application", media: "all" %>
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +17,7 @@
       <div class="reading-header">
         <div class="reading-header-inner">
           <div class="flex-align-center">
-            <%= link_to "#", class: "toc-button", data: { controller: "toc", action: "click->toc#toggle" } do %>
+            <%= link_to '#', class: "toc-button", data: {controller: "toc", action: "click->toc#toggle"} do %>
               <i class="material-icons">menu</i>
             <% end %>
           </div>
@@ -29,11 +30,9 @@
         </div>
       </div>
       <div class="toc-dropdown">
-        <ul>
-          <% @page.book.pages.each do |page| %>
-            <li><%= link_to page.title, read_page_path(page) %></li>
-          <% end %>
-        </ul>
+        <div id="toc">
+          toc
+        </div>
       </div>
       <div class="reading-content">
         <%= yield %>
@@ -52,6 +51,6 @@
         </div>
       </div>
     </div>
-    <%= javascript_include_tag "zenbook/application" %>
+    <!-- <%= javascript_include_tag "zenbook/application" %> -->
   </body>
 </html>

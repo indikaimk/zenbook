@@ -1,0 +1,9 @@
+<div id="toc">
+  <ul>
+    <% @book.pages.sorted.each do |page| %>
+      <li class="top-space-point-5">
+        <%= link_to page.title, zenbook.read_page_path(page) %>
+      </li>
+    <% end %>
+  </ul>
+</div>
