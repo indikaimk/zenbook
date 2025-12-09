@@ -11,6 +11,9 @@ Zenbook::Engine.routes.draw do
         get 'show_toc'
         get 'hide_toc'
       end
+      collection do
+        get 'latest_book'
+      end
     end
     resources :pages, only: [:show]
   end
