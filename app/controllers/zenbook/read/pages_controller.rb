@@ -1,6 +1,8 @@
 module Zenbook
   class Read::PagesController < ::ApplicationController
     allow_unauthenticated_access only: %i[show]
+    skip_before_action :require_admin!
+    
     layout 'reading'
 
     def show 

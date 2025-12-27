@@ -1,6 +1,7 @@
 module Zenbook
   class Read::BooksController < ::ApplicationController
     allow_unauthenticated_access only: %i[index latest_book]
+    skip_before_action :require_admin!, only: %i[index latest_book]
 
     # layout 'exam_prep_student', only: [:index]
     before_action :set_book, only: [:show_toc, :hide_toc]
