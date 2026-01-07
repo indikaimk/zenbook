@@ -10,6 +10,10 @@ module Zenbook
     scope :published, -> { where(state: :published) }
     scope :sorted, -> { order(page_number: :asc) }
 
+    def to_trix_content_attachment_partial_path
+      "pages/attachable"
+    end
+
     private
 
     def set_page_number
