@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "latest-book-header" do %>
-  <div class="pb-4 pt-4 bg-primary">
+  <div class="pb-4 pt-4 bg-black">
     <div class="text-white text-center">
       The new, write-in-progress book:<span class="left-space-point-5 font-semibold"><%= @latest_book.title %></span>
       <%= link_to zenbook.read_page_path(@latest_book.pages.sorted.first), class: "ms-2 font-semibold border-2 border-white rounded py-1 px-2 transition duration-300 hover:bg-white hover:text-primary", data: { turbo_frame: "_top"} do %>
