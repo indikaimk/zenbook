@@ -16,16 +16,16 @@ module Zenbook
 
     private
 
-    def set_page_number
-      self.page_number = book.pages.count + 1
-    end
-
-    def update_book_state
-      if published? && book.in_progress?
-        # Book is already in progress, do nothing
-      elsif published?
-        book.in_progress!
+      def set_page_number
+        self.page_number = book.pages.count + 1
       end
+
+      def update_book_state
+        if published? && book.in_progress?
+          # Book is already in progress, do nothing
+        elsif published?
+          book.in_progress!
+        end
     end
   end
 end

@@ -1,5 +1,9 @@
 Zenbook::Engine.routes.draw do
   resources :books do
+    member do
+      get 'preview_pdf'
+      post 'publish'
+    end
     resources :pages, shallow: true do
     end
     resources :book_subscriptions, only: [:create, :update, :destroy]

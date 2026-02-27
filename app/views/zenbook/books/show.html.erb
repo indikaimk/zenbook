@@ -8,8 +8,18 @@
     <%= link_to 'Edit', edit_book_path(@book), class: 'grey-button' %>
   </div>
   <div>
+    <%= link_to 'Preview book', preview_pdf_book_path(@book), class: 'grey-button' %>
+  </div>
+  <div>
     <%= button_to "Add page", book_pages_path(@book), method: :post, class: 'material-button background-blue' %>
   </div>
+  <div>
+    <%= button_to "Publish to pdf", publish_book_path(@book), method: :post, class: 'material-button background-blue' %>
+  </div>
+</div>
+
+<div>
+  <p style="color: green"><%= notice %></p>
 </div>
 
 <div class="bottom-space-1">
@@ -20,7 +30,12 @@
   <%= @book.description %>
 </div>
 
-
+<% if @book.pdf_book.present? %>
+  <div class="bottom-space-1">
+    Published at <%= @book.published_at.strftime("%b %d, %Y") %>
+    <%= link_to 'Download', main_app.url_for(@book.pdf_book), class: 'grey-button' %>
+  </div>
+<% end %>
 
 <% unless @book.pages.empty? %>
   <h2 class="list-item-heading bottom-space-1">Pages</h2>

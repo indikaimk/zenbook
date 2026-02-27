@@ -22,7 +22,7 @@ module Zenbook
 
     private
       def set_book 
-        @book = Book.find(params[:id])      
+        @book = Book.find_by(slug: params[:id])      
       end
   end
 end

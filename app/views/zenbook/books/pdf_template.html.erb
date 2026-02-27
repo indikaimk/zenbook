@@ -1,0 +1,37 @@
+<div class="h-[1050px] w-full flex flex-col justify-center items-center bg-gray-900 text-white p-12 relative text-center" style="page-break-after: always; break-after: page;">
+  
+  <div class="absolute top-0 left-0 w-full h-4 bg-primary"></div>
+  <div class="absolute bottom-0 left-0 w-full h-4 bg-primary"></div>
+
+  <span class="text-primary font-bold tracking-widest uppercase mb-4 text-sm">
+    Cloudqubes Exclusive Guide
+  </span>
+
+  <h1 class="text-6xl font-black mb-6 leading-tight max-w-3xl">
+    <%= @book.title %>
+  </h1>
+  
+  <% if @book.description.present? %>
+    <p class="text-xl text-gray-400 max-w-2xl mb-12">
+      <%= @book.description %>
+    </p>
+  <% end %>
+
+  <div class="mt-12 pt-12 border-t border-gray-800 w-full max-w-md">
+    <p class="text-lg font-medium text-gray-300">By Cloudqubes team</p>
+    <p class="text-sm text-gray-500 mt-1">DevOps Mastery</p>
+  </div>
+  
+</div>
+
+<div class="max-w-4xl mx-auto py-12 px-8 ebook-content text-lg">
+
+  <% 
+    toc_html, body_html = @book.toc_and_final_content 
+  %>
+  
+  <%= raw toc_html %>
+
+  <%= raw body_html %>
+
+</div>
