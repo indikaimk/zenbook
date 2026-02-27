@@ -32,7 +32,7 @@
 
 <% if @book.pdf_book.present? %>
   <div class="bottom-space-1">
-    Published at <%= @book.published_at.strftime("%b %d, %Y") %>
+    Published at <%= @book.published_at.strftime("%b %d, %Y") if @book.published_at.present? %>
     <%= link_to 'Download', main_app.url_for(@book.pdf_book), class: 'grey-button' %>
   </div>
 <% end %>

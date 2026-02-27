@@ -48,6 +48,16 @@
     <%= form.checkbox :is_markdown %>
   </div>
 
+  <div class="field bottom-space-1">
+    <%= form.label :pdf_book %>
+    <%= form.file_field :pdf_book %>
+  </div>  
+
+  <div class="material-textbox">
+    <%= form.datetime_field :published_at, placeholder: " " %>
+    <%= form.label :published_at, "Published at" %>
+  </div>
+
   <div class="actions">
     <%= form.submit "Save", class: 'material-button background-blue' %>
   </div>
