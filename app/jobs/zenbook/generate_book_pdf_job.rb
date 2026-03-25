@@ -6,6 +6,11 @@ module Zenbook
   class GenerateBookPdfJob < ApplicationJob
     queue_as :default
 
+    # AWS needs a moment to initialize the Graviton container/VPC resources.
+    # This will retry the job up to 5 times, waiting longer between each attempt 
+    # (e.g., 3s, 18s, 83s...) while Lambda gets ready.
+    retry_on Aws::Lambda::Errors::CodeArtifactUserPendingException, wait: :exponentially_longer, attempts: 5
+
     def perform(book_id)
       book = Book.find(book_id)
 
