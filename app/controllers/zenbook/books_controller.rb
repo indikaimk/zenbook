@@ -1,6 +1,6 @@
 module Zenbook
   class BooksController < ::ApplicationController
-    before_action :set_book, only: [:show, :edit, :update, :publish]
+    before_action :set_book, only: [:show, :edit, :update, :publish, :preview_pdf]
     layout 'creator'
 
     def index
@@ -49,7 +49,6 @@ module Zenbook
     end
 
     def preview_pdf
-      @book = Book.find(params[:id])
       render :pdf_template, layout: 'ebook_pdf_layout'
     end
 
