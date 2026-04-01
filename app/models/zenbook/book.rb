@@ -15,6 +15,7 @@ module Zenbook
     
 
     has_one_attached :cover_image
+    has_one_attached :pdf_cover_image
     has_one_attached :pdf_book
 
     def toc_and_final_content

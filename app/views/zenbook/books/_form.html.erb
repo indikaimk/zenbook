@@ -44,6 +44,16 @@
   </div>
 
   <div class="field bottom-space-1">
+    <%= form.label :pdf_cover_image %>
+    <%= form.file_field :pdf_cover_image %>
+    <% if book.pdf_cover_image.attached? %>
+      <div class="top-space-1">
+        <%= image_tag main_app.url_for(book.pdf_cover_image.variant(resize_to_limit: [300, 400])) %>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="field bottom-space-1">
     <%= form.label :is_markdown, "Write in markdown" %>
     <%= form.checkbox :is_markdown %>
   </div>
