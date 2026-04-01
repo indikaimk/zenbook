@@ -17,6 +17,12 @@
     </p>
   <% end %>
 
+  <div>
+    <% if @book.pdf_cover_image.attached? %>
+      <%= image_tag main_app.url_for(@book.pdf_cover_image), class: "mt-12 rounded-lg" %>
+    <% end %>
+  </div>
+
   <div class="mt-12 pt-12 border-t border-gray-800 w-full max-w-md">
     <p class="text-lg font-medium text-gray-300">By Cloudqubes team</p>
     <p class="text-sm text-gray-500 mt-1">DevOps Mastery</p>
