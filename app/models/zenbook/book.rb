@@ -73,6 +73,7 @@ module Zenbook
       ordered_pages.map do |chapter|
         # Extract the text (ActionText uses .body or .to_s, text columns use just the attribute name)
         # Adjust 'content' to whatever your Chapter attribute is actually named
+
         raw_text = chapter.content.to_s 
         
         chapter_html = if is_markdown
@@ -84,7 +85,12 @@ module Zenbook
 
         # Wrap each chapter in a semantic HTML section. 
         # The 'chapter-section' class is crucial for our CSS page-break rules!
-        "<div class='chapter-section'>#{chapter_html}</div>"
+        %Q{
+          <header class='chapter-header mb-4'>
+            <h1 class='text-3xl font-semibold text-primary'>#{chapter.title}</h1>
+          </header>
+          <div class='chapter-section'>#{chapter_html}</div>
+        }
       end.join("\n\n")
     end
 
